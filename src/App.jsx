@@ -1,15 +1,16 @@
 import React from "react";
-import Login from "./pages/Auth/Login/Login";
-import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Dashboard from "./pages/Dashboard/Dashboard";
+import PartnerDetails from "./pages/Partners/partner-details/PartnerDetails";
+
 function App() {
   return (
-    <Router>
-      <div>
-        <Dashboard />
-      </div>
-      {/* <Login /> */}
-    </Router>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Dashboard />} />
+        <Route path="/partner/:partnerId" element={<PartnerDetails />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

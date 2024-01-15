@@ -1,8 +1,9 @@
-import { Button } from "../ui/button"
+import { useState } from "react"
 import {
   flexRender,
   getCoreRowModel,
   useReactTable,
+  getSortedRowModel,
   getPaginationRowModel,
 } from "@tanstack/react-table"
 
@@ -20,16 +21,22 @@ export function DataTable({
   columns,
   data,
 }) {
+  const [sorting, setSorting] = useState([])
   const table = useReactTable({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
+    onSortingChange: setSorting,
+    getSortedRowModel: getSortedRowModel(),
+    state: {
+      sorting,
+    },
   })
 
   return (
     <div>
-      <div className="rounded-md border">
+      <div className="rounded-md border text-whit">
       <Table>
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (
